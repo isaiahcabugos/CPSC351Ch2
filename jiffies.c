@@ -38,7 +38,7 @@ int proc_init(void)
         // proc_create_data() passing NULL as the last argument
         proc_create(PROC_NAME, 0, NULL, &proc_ops);
 
-        printk(KERN_INFO "/proc/%s created\n", PROC_NAME);
+        // printk(KERN_INFO "/proc/%s created\n", PROC_NAME);
      	printk(KERN_INFO "Golden Ratio: %lu\n", GOLDEN_RATIO_PRIME);
       	printk(KERN_INFO "Value of Jiffies in Proc_Init: %lu\nValue of HZ: %d\n", jiffies, HZ);
 
