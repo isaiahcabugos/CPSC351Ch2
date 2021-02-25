@@ -38,9 +38,9 @@ int proc_init(void)
         // proc_create_data() passing NULL as the last argument
         proc_create(PROC_NAME, 0, NULL, &proc_ops);
 
-        // printk(KERN_INFO "/proc/%s created\n", PROC_NAME);
-     	printk(KERN_INFO "Golden Ratio: %lu\n", GOLDEN_RATIO_PRIME);
-      	printk(KERN_INFO "Value of Jiffies in Proc_Init: %lu\nValue of HZ: %d\n", jiffies, HZ);
+        printk(KERN_INFO "/proc/%s created\n", PROC_NAME);
+     	// printk(KERN_INFO "Golden Ratio: %lu\n", GOLDEN_RATIO_PRIME);
+      	// printk(KERN_INFO "Value of Jiffies in Proc_Init: %lu\nValue of HZ: %d\n", jiffies, HZ);
 
 	return 0;
 }
@@ -51,8 +51,8 @@ void proc_exit(void) {
         // removes the /proc/hello entry
         remove_proc_entry(PROC_NAME, NULL);
 
-        printk(KERN_INFO "GCD of 3300 and 24: %lu\n", gcd(3300, 24));
-	printk(KERN_INFO "Value of Jiffies in Proc_Exit: %lu\n", jiffies);
+        // printk(KERN_INFO "GCD of 3300 and 24: %lu\n", gcd(3300, 24));
+	// printk(KERN_INFO "Value of Jiffies in Proc_Exit: %lu\n", jiffies);
         printk(KERN_INFO "/proc/%s removed\n", PROC_NAME);
 }
 
@@ -84,7 +84,7 @@ ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t 
 
         completed = 1;
 
-        rv = sprintf(buffer, "Hello World\n");
+        rv = sprintf(buffer, "Golden Ratio: %lu\n", GOLDEN_RATIO_PRIME);
 
         // copies the contents of buffer to userspace usr_buf
         copy_to_user(usr_buf, buffer, rv);
