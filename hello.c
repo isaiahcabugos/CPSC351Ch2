@@ -110,3 +110,48 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Hello Module");
 MODULE_AUTHOR("SGG");
 
+/*========================================================
+======================== SCRIPT ===========================
+
+sudo -p "osc"
+sudo dmesg -c 
+clear 
+
+printf "beginning script...\n\n"
+
+printf "now testing proc hello\n"
+sudo insmod hello.ko
+
+sleep 2
+cat /proc/hello
+sleep 1
+
+sudo rmmod hello
+sudo dmesg 
+printf "finished testing proc seconds\n"
+
+printf "\n...end of script\n\n"
+
+====================== END SCRIPT =========================
+==========================================================*/
+
+/*========================================================
+======================== OUTPUT ===========================
+
+beginning script...
+
+now testing proc hello
+Hello World
+[  445.010966] /proc/hello created
+[  445.010968] Golden Ratio: 11400862456688148481
+[  445.010970] Value of Jiffies in Proc_Init: 4295003479
+               Value of HZ: 250
+[  448.083097] GCD of 3300 and 24: 12
+[  448.083099] Value of Jiffies in Proc_Exit: 4295004248
+[  448.083100] /proc/hello removed
+finished testing proc seconds
+
+...end of script
+
+====================== END OUTPUT =========================
+==========================================================*/
