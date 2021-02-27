@@ -80,7 +80,7 @@ ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t 
 
         completed = 1;
 
-        rv = sprintf(buffer, "Golden Ratio: %lu\n", GOLDEN_RATIO_PRIME);
+        rv = sprintf(buffer, "Jiffies since process start: %lu\n", jiffies);
 
         // copies the contents of buffer to userspace usr_buf
         copy_to_user(usr_buf, buffer, rv);
@@ -96,11 +96,46 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Jiffies Module");
 MODULE_AUTHOR("SGG");
 
-//===================== OUTPUT =======================
-// beginning script...
-//
-// Golden Ratio: 11400862456688148481
-// [  709.340979] /proc/jiffies created
-// [  711.369157] /proc/jiffies removed
-//
-// ...end of script
+/*========================================================
+======================== SCRIPT ===========================
+
+sudo -p "osc"
+sudo dmesg -c 
+clear 
+
+printf "beginning script...\n\n"
+
+printf "now testing proc jiffies\n"
+sudo insmod jiffies.ko
+
+sleep 2
+cat /proc/jiffies
+sleep 1
+cat /proc/jiffies
+sleep 1
+
+sudo rmmod jiffies
+sudo dmesg 
+printf "finished testing proc jiffies\n"
+
+printf "\n...end of script\n\n"
+
+====================== END SCRIPT =========================
+==========================================================*/
+
+/*========================================================
+======================== OUTPUT ===========================
+
+beginning script...
+
+now testing proc jiffies
+Jiffies since process start: 4295210625
+Jiffies since process start: 4295210876
+[ 1271.555155] /proc/jiffies created
+[ 1275.594584] /proc/jiffies removed
+finished testing proc jiffies
+
+...end of script
+
+====================== END OUTPUT =========================
+==========================================================*/

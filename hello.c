@@ -128,7 +128,7 @@ sleep 1
 
 sudo rmmod hello
 sudo dmesg 
-printf "finished testing proc seconds\n"
+printf "finished testing proc hello\n"
 
 printf "\n...end of script\n\n"
 
@@ -149,7 +149,7 @@ Hello World
 [  448.083097] GCD of 3300 and 24: 12
 [  448.083099] Value of Jiffies in Proc_Exit: 4295004248
 [  448.083100] /proc/hello removed
-finished testing proc seconds
+finished testing proc hello
 
 ...end of script
 

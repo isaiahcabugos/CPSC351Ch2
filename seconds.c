@@ -105,3 +105,48 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Hello Module");
 MODULE_AUTHOR("SGG");
 
+
+/*========================================================
+======================== SCRIPT ===========================
+
+sudo -p "osc"
+sudo dmesg -c 
+clear 
+
+printf "beginning script...\n\n"
+
+printf "now testing proc seconds\n"
+sudo insmod seconds.ko
+
+sleep 2
+cat /proc/seconds
+sleep 1
+cat /proc/seconds
+
+sudo rmmod seconds
+sudo dmesg 
+printf "finished testing proc seconds\n"
+
+printf "\n...end of script\n\n"
+
+====================== END SCRIPT =========================
+==========================================================*/
+
+/*========================================================
+======================== OUTPUT ===========================
+
+beginning script...
+
+now testing proc seconds
+Reported Number of Seconds since process start: 2
+Reported Number of Seconds since process start: 3
+[ 1379.081533] /proc/seconds created
+[ 1379.081535] Value of Jiffies in Proc_Init: 4295237002
+               Value of HZ: 250
+[ 1382.143221] /proc/seconds removed
+finished testing proc seconds
+
+...end of script
+
+====================== END OUTPUT =========================
+==========================================================*/
